@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include "chatclient.h"
+#include <QHostAddress>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,7 +23,13 @@ private slots:
 
     void on_btLogout_clicked();
 
+    void connectToServer();
+    void messageReceived(const QString &sender,const QString &text);
+    void jsonReceived(const QJsonObject &docObj);
+    void userJoined(const QString &user);
 private:
     Ui::MainWindow *ui;
+
+    ChatClient *m_chatClient;
 };
 #endif // MAINWINDOW_H
